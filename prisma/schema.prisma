@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  createdAt DateTime @default(now())
+  tasks     Task[]
+}
+
+model Task {
+  id          String       @id @default(cuid())
+  userId      String?
+  taskName    String
+  description String?
+  project     String
+  hoursSpent  Float
+  date        DateTime
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  user        User?        @relation(fields: [userId], references: [id])
+  taskStatus  TaskStatus[]
+}
+
+model TaskStatus {
+  id           String      @id @default(cuid())
+  taskId       String
+  serviceType  ServiceType
+  status       Status      @default(PENDING)
+  errorMessage String?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  task         Task        @relation(fields: [taskId], references: [id], onDelete: Cascade)
+}
+
+enum ServiceType {
+  GOOGLE_SHEETS
+  OUTLOOK
+  SLACK
+}
+
+enum Status {
+  PENDING
+  SUCCESS
+  FAILED
+}
