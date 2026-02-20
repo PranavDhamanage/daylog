@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { appendDailyTasksToSheet } from "@/lib/integrations/google-sheets";
-import { ServiceType, Status } from "@/generated/prisma";
+import { ServiceType, Status } from "@/generated/prisma/client";
 
 // This endpoint is called by Vercel Cron at 6:00 PM IST (12:30 UTC) on weekdays
 // Cron schedule: 30 12 * * 1-5

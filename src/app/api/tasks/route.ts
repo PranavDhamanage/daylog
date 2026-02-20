@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { appendTaskToSheet } from "@/lib/integrations/google-sheets";
-import { ServiceType, Status } from "@/generated/prisma";
+import { ServiceType, Status } from "@/generated/prisma/client";
 
 export async function GET(request: NextRequest) {
   try {
@@ -11,8 +11,8 @@ export async function GET(request: NextRequest) {
     const where = dateParam
       ? {
           date: {
-            gte: new Date(`${dateParam}T00:00:00.000Z`),
-            lt: new Date(`${dateParam}T23:59:59.999Z`),
+            gte: new Date(`${dateParam}T00:00:00+05:30`),
+            lt: new Date(`${dateParam}T23:59:59+05:30`),
           },
         }
       : {};

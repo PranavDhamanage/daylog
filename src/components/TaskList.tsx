@@ -1,6 +1,5 @@
 "use client";
 
-import { ServiceType } from "@/generated/prisma";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -29,9 +28,9 @@ interface TaskListProps {
 }
 
 const serviceLabel: Record<string, string> = {
-  [ServiceType.GOOGLE_SHEETS]: "Sheets",
-  [ServiceType.OUTLOOK]: "Email",
-  [ServiceType.SLACK]: "Slack",
+  GOOGLE_SHEETS: "Sheets",
+  OUTLOOK: "Email",
+  SLACK: "Slack",
 };
 
 type BadgeVariant = "default" | "secondary" | "destructive" | "outline";

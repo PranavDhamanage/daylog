@@ -1,5 +1,5 @@
 import { google } from "googleapis";
-import { Task } from "@/generated/prisma";
+import { Task } from "@/generated/prisma/client";
 
 const SHEET_NAME = "Timesheet";
 const HEADER_ROW = ["Date", "Task Name", "Description", "Project", "Hours Spent", "Status"];
